@@ -10,9 +10,9 @@ class Product(models.Model):
     category = models.CharField(max_length=200, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     rating = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
-    num_Reviews = models.IntegerField(null=True, blank=True, default=0)
+    numReviews = models.IntegerField(null=True, blank=True, default=0)
     price = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
-    count_In_Stock = models.IntegerField(null=True, blank=True, default=0)
+    countInStock = models.IntegerField(null=True, blank=True, default=0)
     created_At = models.DateTimeField(auto_now_add=True)
     _id = models.AutoField(primary_key=True, editable=False)
 
