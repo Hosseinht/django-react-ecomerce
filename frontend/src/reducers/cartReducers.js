@@ -6,12 +6,12 @@ export const cartReducer = (state = {cartItems: []}, action) => {
         // Check if the product that we send back inside of action payload exist in cartItems array
         case CART_ADD_ITEM:
             const item = action.payload
-            const existItem = state.cartItems.find(x => x.product === item.product)
+            const existItem = state.cartItems.find(x => x.idProduct === item.idProduct)
             // product is product id. it's in the cartAction
             if (existItem) {
                 return {
                     ...state,
-                    cartItems: state.cartItems.map(x => x.product === existItem.product ? item : x)
+                    cartItems: state.cartItems.map(x => x.idProduct === existItem.idProduct ? item : x)
                     // loop through the cartItems
                 }
             } else {
