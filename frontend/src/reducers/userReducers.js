@@ -13,6 +13,7 @@ export const userLoginReducer = (state = {}, action) => {
         case USER_LOGIN_SUCCESS:
             return {loading: false, userInfo: action.payload}
             // payload = data in userAction
+            // userInfo will be used in useSelector in LoginScreen
         case USER_LOGIN_FAIL:
             return {loading: false, error: action.payload}
 
