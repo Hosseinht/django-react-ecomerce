@@ -4,8 +4,8 @@ import {Link} from "react-router-dom";
 import {Form, Button, Row, Col} from "react-bootstrap";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import {getUserDetails} from "../actions/userActions";
-import FormContainer from "../components/FormContainer";
+import {getUserDetails, updateUserProfile} from "../actions/userActions";
+import {USER_UPDATE_PROFILE_RESET} from "../constants/userConstants";
 
 
 const ProfileScreen = ({history}) => {
@@ -26,13 +26,17 @@ const ProfileScreen = ({history}) => {
     const {userInfo} = userLogin
     // need to make sure that user is logged in
 
+    const userUpdateProfile = useSelector(state => state.userUpdateProfile)
+    const {success} = userUpdateProfile
+
     // If user is already logged in and go to login page will be redirect
     useEffect(() => {
         if (!userInfo) {
             history.push('/login')
         } else {
             // if we have user information
-            if (!user || !user.name) {
+            if (!user || !user.name || success) {
+                dispatch({type:USER_UPDATE_PROFILE_RESET})
                 dispatch(getUserDetails('profile'))
                 // Profile is the id in action
             } else {
@@ -40,7 +44,7 @@ const ProfileScreen = ({history}) => {
                 setEmail(user.email)
             }
         }
-    }, [dispatch, history, userInfo, user])
+    }, [dispatch, history, userInfo, user, success])
 
 
     const submitHandler = (e) => {
@@ -48,7 +52,13 @@ const ProfileScreen = ({history}) => {
         if (password !== confirmPassword) {
             setMessage('Passwords do not match')
         } else {
-            console.log('hello')
+            dispatch(updateUserProfile({
+                'id':user._id,
+                'name':name,
+                'email':email,
+                'password':password,
+            }))
+            setMessage('Passwords do not match')
         }
 
     }
@@ -110,7 +120,7 @@ const ProfileScreen = ({history}) => {
                         </Form.Control>
                     </Form.Group>
 
-                    <Button type='submit' variant='primary'>
+                    <Button className='my-3' type='submit' variant='primary'>
                         Update
                     </Button>
 
