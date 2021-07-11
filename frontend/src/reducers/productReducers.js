@@ -8,14 +8,17 @@ import {
     PRODUCT_DETAILS_SUCCESS,
     PRODUCT_DETAILS_FAIL,
 } from "../constants/productConstants";
+// ریدوسر استیت رو میگیره و با توجه به اکشن استیت رو تغییر میده
 
 export const productListReducer = (state = {products: []}, action) => {
+    // Our state at first is an empty list of products. So here we're just going to update the products part of the state
     switch (action.type) {
         case PRODUCT_LIST_REQUEST:
             return {loading: true, products: []}
         case PRODUCT_LIST_SUCCESS:
             return {loading: false, products: action.payload}
             // payload = data in productAction
+            // We update our product array so our state(initialState) will have a list of products
         case PRODUCT_LIST_FAIL:
             return {loading: false, error: action.payload}
         default:

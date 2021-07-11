@@ -17,7 +17,7 @@ const RegisterScreen = ({location, history}) => {
 
     const dispatch = useDispatch()
 
-    const redirect = location.search ? location.search.split('=')[1] : '/'
+    const redirect = location.search ? location.search.split('=')[1 ] : '/'
 
     const userRegister = useSelector(state => state.userRegister)
     const {error, loading, userInfo} = userRegister
@@ -82,7 +82,7 @@ const RegisterScreen = ({location, history}) => {
              <Row className='py-3'>
                     <Col>
                         Have an Account ? <Link
-                        to={redirect ? `/register?redirect=${redirect}` : '/login'}>Sign In</Link>
+                        to={redirect ? `/login?redirect=${redirect}` : '/login'}>Sign In</Link>
 
                     </Col>
                 </Row>

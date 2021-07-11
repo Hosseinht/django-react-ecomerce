@@ -26,7 +26,7 @@ const ProductScreen = ({match, history}) => {
 
     return (
         <div>
-            <Link to='/' className='btn btn-light my-3'>Go Back</Link>
+            <Link to='/' className='btn btn-light my-3'><Button variant="light">Go Back</Button> </Link>
             {loading ?
                 <Loader/>
                 : error ? <Message variant='danger '>{error}</Message>
@@ -83,9 +83,11 @@ const ProductScreen = ({match, history}) => {
                                                             as='select'
                                                             value={qty}
                                                             onChange={(e) => setQty(e.target.value)}
+                                                            // Get the value from what we selected
                                                         >
                                                             {
                                                                 [...Array(product.countInStock).keys()].map((x) => (
+                                                                    // If we have 3 in stuck our Array wil be like [0,1,2] so we need to do:
                                                                     <option key={x + 1} value={x + 1}>
                                                                         {x + 1}
                                                                     </option>

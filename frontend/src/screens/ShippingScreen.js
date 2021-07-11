@@ -31,6 +31,7 @@ const ShippingScreen = ({history}) => {
                     <Form.Label> Address </Form.Label>
                     <Form.Control required type='text' placeholder='Enter Address'
                                   value={address ? address : ''}
+                        // If address exist then add the address in from the state if doesn't set a empty value
                         // it just cause some error in console if you don't do this
                                   onChange={(e) => setAddress(e.target.value)}>
                     </Form.Control>

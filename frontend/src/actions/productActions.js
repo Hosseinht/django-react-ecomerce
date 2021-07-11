@@ -24,6 +24,7 @@ export const listProducts = () => async (dispatch) => {
         dispatch({
             type: PRODUCT_LIST_FAIL,
             payload: error.response && error.response.data.detail ? error.response.data.detail : error.message
+            // If there is a response and response is a custom message return that custom message otherwise  just pass the generic message
         })
     }
 }

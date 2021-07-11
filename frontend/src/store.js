@@ -12,6 +12,7 @@ import {
 
 const reducer = combineReducers({
     productList: productListReducer,
+    // Now there is a productList in our state that has products in it
     productDetails: productDetailsReducer,
     cart: cartReducer,
     userLogin: userLoginReducer,
@@ -21,6 +22,7 @@ const reducer = combineReducers({
 })
 const cartItemsFromStorage = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
+// Pull out user data from local storage
 const shippingAddressFromStorage = localStorage.getItem('shippingAddress') ? JSON.parse(localStorage.getItem('shippingAddress')) : {}
 //  null or []
 
@@ -30,6 +32,7 @@ const initialState = {
         shippingAddress: shippingAddressFromStorage
     },
     userLogin: {userInfo: userInfoFromStorage},
+    // when we first load our page we want to get userinfo
 }
 
 const middleware = [thunk]

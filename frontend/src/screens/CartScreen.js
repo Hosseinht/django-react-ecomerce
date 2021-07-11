@@ -9,6 +9,7 @@ const CartScreen = ({match, location, history}) => {
     const productId = match.params.id
     // We fire addToCart when we have product ID
     const qty = location.search ? Number(location.search.split('=')[1]) : 1
+    // We get the qty from the url. it will return an array ["?qty", "3"]. we need that 3 so we use index1[1]. index zero is ["?qty"]
 
     const dispatch = useDispatch()
     const cart = useSelector(state => state.cart)

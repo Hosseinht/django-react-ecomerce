@@ -16,11 +16,13 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
-        # data['username'] = self.user.username
-        # data['email'] = self.user.email
+
         serializer = UserSerializerWithToken(self.user).data
         for k, v in serializer.items():
             data[k] = v
+            # or:
+            # data['username'] = self.user.username
+            # data['email'] = self.user.email
 
         return data
 
@@ -40,6 +42,7 @@ def register_user(request):
             username=data['email'],
             email=data['email'],
             password=make_password(data['password'])
+            # make_password hash the password
         )
         serializer = UserSerializerWithToken(user, many=False)
         # many=False! because we want to create one user not multiple
@@ -56,6 +59,8 @@ def update_user_profile(request):
     serializer = UserSerializerWithToken(user, many=False)
     # It's not logged in user. It gets data from the token because of the decorator
     data = request.data
+    # Once we get the user information we want to update this user.
+    # so we need to pull out the data so we can update our user
     user.first_name = data['name']
     user.username = data['email']
     user.email = data['email']

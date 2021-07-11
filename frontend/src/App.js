@@ -28,7 +28,7 @@ function App() {
                     <Route path='/placeorder' component={PlaceOrderScreen} />
                     <Route path='/product/:id' component={ProductScreen}/>
                     <Route path='/cart/:id?' component={CartScreen}/>
-                    {/* ? is for id as an option */}
+                    {/* ? is for id as an option. if we want to go straight to the cart we don't need the id */}
                 </Container>
             </main>
             <Footer/>

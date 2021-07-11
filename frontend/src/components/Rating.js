@@ -34,6 +34,7 @@ const Rating = ({value, text, color}) => {
                 </i>
             </span>
             <span>{text && text}</span>
+            {/*if text use the velue if it doesn't don't use*/}
         </div>
     );
 };

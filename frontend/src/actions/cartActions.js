@@ -22,6 +22,7 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
     })
     localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
     // cart is in store
+    // data is in local storage but we also want to load it in our state. we need to parse it and turn it back to JS object and load it in our initialState
 
 }
 //Key(cartItems):Value
@@ -38,7 +39,7 @@ export const removeFromCart = (id) => async (dispatch, getState) => {
 }
 
 export const saveShippingAddress = (data) => async (dispatch) => {
-
+    // data = form data
     dispatch({
         type: CART_SAVE_SHIPPING_ADDRESS,
         payload: data,

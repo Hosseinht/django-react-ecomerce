@@ -45,6 +45,8 @@ export const login = (email, password) => async (dispatch) => {
             payload: data
         })
         localStorage.setItem('userInfo', JSON.stringify(data))
+        // The data of the user will be saved in local storage so we know that the user is logged in.
+        // It's in local storage now but we need to pull this data from local storage when we first log in and load our state with it ====>store
 
     } catch (error) {
         dispatch({
@@ -102,9 +104,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
             type: USER_DETAILS_REQUEST
         })
 
-        const {
-            userLogin: {userInfo}
-        } = getState()
+        const {userLogin: {userInfo}} = getState()
         // Get the user details. we want to know who were logged in
 
         const config = {
@@ -141,9 +141,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
             type: USER_UPDATE_PROFILE_REQUEST
         })
 
-        const {
-            userLogin: {userInfo}
-        } = getState()
+        const {userLogin: {userInfo}} = getState()
         // Get the user details. we want to know who were logged in
 
         const config = {

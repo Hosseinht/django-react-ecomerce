@@ -73,8 +73,8 @@ const PlaceOrderScreen = () => {
                 </Col>
 
                 <Col md={4}>
-                    <Card>
-                        <ListGroup variant={"flush"}>
+                    <Card border={'0'}>
+                        <ListGroup variant="flush">
                             <ListGroup.Item>
                                 <h2>Order Summery</h2>
                             </ListGroup.Item>

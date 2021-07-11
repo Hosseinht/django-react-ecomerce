@@ -8,15 +8,18 @@ import {
 
 export const cartReducer = (state = {cartItems: [], shippingAddress: {}}, action) => {
     switch (action.type) {
-        // Check if the product that we send back inside of action payload exist in cartItems array
+        // Check if the product that we send back inside of action payload exist in cartItems array. if exist we don't want to add it again we just
+        // need to change the quantity. if we don't have we get it fro action.payload and add it to cartItems array.
         case CART_ADD_ITEM:
             const item = action.payload
+            // paylaod will be the product
             const existItem = state.cartItems.find(x => x.idProduct === item.idProduct)
-            // product is product id. it's in the cartAction
+            // product is product id. it's in the cartAction. if it find something it will return back an object if it doesn't it's going to return nothing
             if (existItem) {
                 return {
+                    ...state,
                     cartItems: state.cartItems.map(x => x.idProduct === existItem.idProduct ? item : x)
-                    // loop through the cartItems
+                    // loop through the cartItems.If the product exist we replace it with the new item if it doesn't we just return x(original product)
                 }
             } else {
                 return {
@@ -30,6 +33,7 @@ export const cartReducer = (state = {cartItems: [], shippingAddress: {}}, action
             return {
                 ...state,
                 cartItems: state.cartItems.filter(x => x.idProduct !== action.payload)
+                // It keeps all the products that doesn't match with action.payload id
             }
 
         case CART_SAVE_SHIPPING_ADDRESS:
