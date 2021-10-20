@@ -22,7 +22,7 @@ const reducer = combineReducers({
     userDetails: userDetailsReducer,
     userUpdateProfile: userUpdateProfileReducer,
     orderCreate: orderCreateReducer,
-    orderDetail: orderDetailsReducer
+    orderDetails: orderDetailsReducer
 
 })
 
