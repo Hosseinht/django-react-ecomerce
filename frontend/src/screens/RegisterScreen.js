@@ -17,7 +17,7 @@ const RegisterScreen = ({location, history}) => {
 
     const dispatch = useDispatch()
 
-    const redirect = location.search ? location.search.split('=')[1 ] : '/'
+    const redirect = location.search ? location.search.split('=')[1] : '/'
 
     const userRegister = useSelector(state => state.userRegister)
     const {error, loading, userInfo} = userRegister
@@ -32,7 +32,7 @@ const RegisterScreen = ({location, history}) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        if (password != confirmPassword) {
+        if (password !== confirmPassword) {
             setMessage('Passwords do not match')
         } else {
             dispatch(register(name, email, password))

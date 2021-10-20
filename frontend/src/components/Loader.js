@@ -10,7 +10,7 @@ const Loader = () => {
                 {
                     height: '100px',
                     width: '100px',
-                    margin: 'auto',
+                    margin: '50%',
                     display: 'block'
                 }
             }

@@ -1,6 +1,7 @@
 import {createStore, combineReducers, applyMiddleware} from "redux";
 import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
+// apply our store to devtool
 import {productListReducer, productDetailsReducer} from "./reducers/productReducers";
 import {cartReducer} from "./reducers/cartReducers";
 import {
@@ -9,7 +10,7 @@ import {
     userDetailsReducer,
     userUpdateProfileReducer
 } from "./reducers/userReducers";
-import {orderCreateReducer} from "./reducers/orderReducer";
+import {orderCreateReducer, orderDetailsReducer} from "./reducers/orderReducer";
 
 const reducer = combineReducers({
     productList: productListReducer,
@@ -21,8 +22,11 @@ const reducer = combineReducers({
     userDetails: userDetailsReducer,
     userUpdateProfile: userUpdateProfileReducer,
     orderCreate: orderCreateReducer,
+    orderDetail: orderDetailsReducer
 
 })
+
+// data is in the local storage but we want to load it into our state. it's stringified we need to parse it to turn it back to JavaScript object and load it to initialState
 const cartItemsFromStorage = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null
 // Pull out user data from local storage

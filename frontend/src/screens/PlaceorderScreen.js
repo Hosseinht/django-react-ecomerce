@@ -16,7 +16,7 @@ const PlaceOrderScreen = ({history,}) => {
 
     cart.itemsPrice = cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2)
     cart.shippingPrice = cart.itemsPrice > 100 ? 0 : 10
-    cart.taxPrice = ((0.082) * cart.itemsPrice).toFixed(2)
+    cart.taxPrice = Number((0.082) * cart.itemsPrice).toFixed(2)
     cart.totalPrice = (Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2)
     // 0 is starting value of acc
 
@@ -29,7 +29,7 @@ const PlaceOrderScreen = ({history,}) => {
             history.push(`/order/${order._id}`)
             dispatch({type: ORDER_CREATE_RESET})
         }
-    }, [success, history])
+    },[success, history])
     const placeOrder = () => {
         dispatch(createOrder({
             orderItems: cart.cartItems,
@@ -44,7 +44,7 @@ const PlaceOrderScreen = ({history,}) => {
 
     return (
         <div>
-            <CheckoutSteps step1 step2 step3 step4/>
+            <CheckoutSteps login shipping payment placeorder/>
             <Row>
                 <Col md={8}>
                     <ListGroup variant={"flush"}>
@@ -120,6 +120,7 @@ const PlaceOrderScreen = ({history,}) => {
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Tax:</Col>
+
                                     <Col>${cart.taxPrice}</Col>
                                 </Row>
                             </ListGroup.Item>

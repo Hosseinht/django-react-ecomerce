@@ -107,15 +107,18 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
         const {userLogin: {userInfo}} = getState()
         // Get the user details. we want to know who were logged in
 
+
         const config = {
             headers: {
                 'content-type': 'application/json',
                 Authorization: `Bearer ${userInfo.token}`
+                // userInfo has the token
             }
         }
         const {data} = await axios.get(
             `/api/users/${id}/`,
-            // id or profile
+            // id or profile string. in backend ut's like api/users/profile
+            // when we want to access a user from admin panel we are going to pass the user ID so it needs to be dynamic
 
             config
         )

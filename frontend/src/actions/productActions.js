@@ -13,6 +13,7 @@ import {
 export const listProducts = () => async (dispatch) => {
     try {
         dispatch({type: PRODUCT_LIST_REQUEST})
+        // It's going to fire off the first reducer
         // Next
         const {data} = await axios.get('/api/products')
         dispatch({

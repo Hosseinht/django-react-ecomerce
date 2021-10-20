@@ -31,15 +31,17 @@ const ProfileScreen = ({history}) => {
 
     // If user is already logged in and go to login page will be redirect
     useEffect(() => {
+        // if user is not logged in
         if (!userInfo) {
             history.push('/login')
         } else {
-            // if we have user information
+            // if user is logged in  and information is not loaded
             if (!user || !user.name || success) {
-                dispatch({type:USER_UPDATE_PROFILE_RESET})
+                dispatch({type: USER_UPDATE_PROFILE_RESET})
                 dispatch(getUserDetails('profile'))
                 // Profile is the id in action
             } else {
+                // when we get data show it
                 setName(user.name)
                 setEmail(user.email)
             }
@@ -53,12 +55,13 @@ const ProfileScreen = ({history}) => {
             setMessage('Passwords do not match')
         } else {
             dispatch(updateUserProfile({
-                'id':user._id,
-                'name':name,
-                'email':email,
-                'password':password,
+                'id': user._id,
+                'name': name,
+                'email': email,
+                'password': password,
             }))
-            setMessage('Passwords do not match')
+            setMessage('')
+            // when password does not match we will have an error. when we match the password error still shows because the page hasn't refreshed. so we do this
         }
 
     }
@@ -99,10 +102,9 @@ const ProfileScreen = ({history}) => {
                     <Form.Group controlId='password'>
                         <Form.Label>Password</Form.Label>
                         <Form.Control
-
                             type='password'
                             placeholder='Enter Password'
-                            value={password}
+                            // value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         >
                         </Form.Control>
@@ -114,7 +116,7 @@ const ProfileScreen = ({history}) => {
 
                             type='password'
                             placeholder='Confirm Password'
-                            value={confirmPassword}
+                            // value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                         >
                         </Form.Control>

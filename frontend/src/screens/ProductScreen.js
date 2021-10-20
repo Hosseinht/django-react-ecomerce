@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {Link} from "react-router-dom";
+import {Link, Route} from "react-router-dom";
 import {Row, Col, Image, ListGroup, Button, Card, Form} from "react-bootstrap";
 import Rating from "../components/Rating";
 import {listProductDetails} from "../actions/productActions";
@@ -18,6 +18,7 @@ const ProductScreen = ({match, history}) => {
 
     useEffect(() => {
         dispatch(listProductDetails(match.params.id))
+        // match.params.id get the id from here ==> <Route path='/product/:id' component={ProductScreen}/> pass it to ==> listProductDetails
     }, [dispatch, match])
 
     const addToCartHandler = () => {
@@ -70,11 +71,11 @@ const ProductScreen = ({match, history}) => {
                                             <Row>
                                                 <Col>Status:</Col>
                                                 <Col>
-                                                    {product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
+                                                    {product.count_In_Stock > 0 ? 'In Stock' : 'Out of Stock'}
                                                 </Col>
                                             </Row>
                                         </ListGroup.Item>
-                                        {product.countInStock > 0 && (
+                                        {product.count_In_Stock > 0 && (
                                             <ListGroup.Item>
                                                 <Row>
                                                     <Col>Qty</Col>
@@ -86,7 +87,7 @@ const ProductScreen = ({match, history}) => {
                                                             // Get the value from what we selected
                                                         >
                                                             {
-                                                                [...Array(product.countInStock).keys()].map((x) => (
+                                                                [...Array(product.count_In_Stock).keys()].map((x) => (
                                                                     // If we have 3 in stuck our Array wil be like [0,1,2] so we need to do:
                                                                     <option key={x + 1} value={x + 1}>
                                                                         {x + 1}
@@ -102,7 +103,7 @@ const ProductScreen = ({match, history}) => {
                                         <ListGroup.Item>
                                             <Button
                                                 onClick={addToCartHandler}
-                                                className='btn w-100' disabled={product.countInStock === 0}
+                                                className='btn w-100' disabled={product.count_In_Stock === 0}
                                                 type='button'>
                                                 Add To Cart
                                             </Button>

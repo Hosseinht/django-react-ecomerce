@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 class Product(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)  # a user can make multiple products
     name = models.CharField(max_length=200, null=True, blank=True)
     image = models.ImageField(null=True, blank=True)
     brand = models.CharField(max_length=200, null=True, blank=True)
@@ -32,6 +32,7 @@ class Review(models.Model):
         return str(self.rating)
 
 
+# Shopping card
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     payment_Method = models.CharField(max_length=200, null=True, blank=True)
@@ -46,9 +47,10 @@ class Order(models.Model):
     _id = models.AutoField(primary_key=True, editable=False)
 
     def __str__(self):
-        return str(self.created_At)
+        return str(self.user.username) + '  ' + 'order num' + str(self._id)
 
 
+# Items in the card
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
@@ -59,7 +61,7 @@ class OrderItem(models.Model):
     _id = models.AutoField(primary_key=True, editable=False)
 
     def __str__(self):
-        return self.name
+        return self.name + ' -- ' + str(self.order)
 
 
 class ShippingAddress(models.Model):

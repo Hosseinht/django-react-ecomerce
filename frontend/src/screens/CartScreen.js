@@ -5,10 +5,12 @@ import {Row, Col, ListGroup, Image, Form, Button, Card} from "react-bootstrap";
 import Message from "../components/Message";
 import {addToCart, removeFromCart} from "../actions/cartActions";
 
+// ** we are not always going  to pass in a product id or quantity ** //
 const CartScreen = ({match, location, history}) => {
     const productId = match.params.id
     // We fire addToCart when we have product ID
     const qty = location.search ? Number(location.search.split('=')[1]) : 1
+    // split by  =
     // We get the qty from the url. it will return an array ["?qty", "3"]. we need that 3 so we use index1[1]. index zero is ["?qty"]
 
     const dispatch = useDispatch()

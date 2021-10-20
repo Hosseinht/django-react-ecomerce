@@ -2,12 +2,12 @@ import React from 'react'
 import {Nav} from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 
-function CheckoutSteps({step1, step2, step3, step4}) {
+function CheckoutSteps({login, shipping, payment, placeorder}) {
 
     return (
         <Nav className='justify-content-center mb-4'>
             <Nav.Item>
-                {step1 ? (
+                {login ? (
                     <LinkContainer to='/login'>
                         <Nav.Link>Login</Nav.Link>
                     </LinkContainer>
@@ -17,7 +17,7 @@ function CheckoutSteps({step1, step2, step3, step4}) {
             </Nav.Item>
 
             <Nav.Item>
-                {step2 ? (
+                {shipping ? (
                     <LinkContainer to='/shipping'>
                         <Nav.Link>Shipping</Nav.Link>
                     </LinkContainer>
@@ -27,7 +27,7 @@ function CheckoutSteps({step1, step2, step3, step4}) {
             </Nav.Item>
 
             <Nav.Item>
-                {step3 ? (
+                {payment ? (
                     <LinkContainer to='/payment'>
                         <Nav.Link>Payment</Nav.Link>
                     </LinkContainer>
@@ -37,7 +37,7 @@ function CheckoutSteps({step1, step2, step3, step4}) {
             </Nav.Item>
 
             <Nav.Item>
-                {step4 ? (
+                {placeorder ? (
                     <LinkContainer to='/placeorder'>
                         <Nav.Link>Place Order</Nav.Link>
                     </LinkContainer>

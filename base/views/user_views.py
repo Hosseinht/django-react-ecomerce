@@ -25,6 +25,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
             # data['email'] = self.user.email
 
         return data
+    # no need to decode the token. we get the user information in the initial response
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -34,6 +35,7 @@ class MyTokenObtainPairView(TokenObtainPairView):
 
 @api_view(['POST'])
 def register_user(request):
+    # data is from post request
     data = request.data
     # handeling error
     try:
