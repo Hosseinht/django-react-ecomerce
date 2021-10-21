@@ -8,11 +8,11 @@ class UserSerializer(serializers.ModelSerializer):
     # To use all these fields we need to let the user serializer knows this
     name = serializers.SerializerMethodField(read_only=True)
     _id = serializers.SerializerMethodField(read_only=True)
-    isAdmin = serializers.SerializerMethodField(read_only=True)
+    is_Admin = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = User
-        fields = ['_id', 'id', 'username', 'email', 'name', 'isAdmin']
+        fields = ['_id', 'id', 'username', 'email', 'name', 'is_Admin']
 
     # get_ is the way that django tell us to this and the second part will be the field name
     # To use all these fields we need to let the user serializer knows this
@@ -20,7 +20,7 @@ class UserSerializer(serializers.ModelSerializer):
     def get__id(self, obj):
         return obj.id
 
-    def get_isAdmin(self, obj):
+    def get_is_Admin(self, obj):
         return obj.is_staff
 
     def get_name(self, obj):
@@ -38,7 +38,7 @@ class UserSerializerWithToken(UserSerializer):
 
     class Meta:
         model = User
-        fields = ['_id', 'id', 'username', 'email', 'name', 'isAdmin', 'token']
+        fields = ['_id', 'id', 'username', 'email', 'name', 'is_Admin', 'token']
 
     def get_token(self, obj):
         token = RefreshToken.for_user(obj)
