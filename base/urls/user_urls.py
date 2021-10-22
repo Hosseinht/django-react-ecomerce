@@ -8,6 +8,8 @@ urlpatterns = [
     path('profile/', views.get_user_profile, name='users-profile'),
     path('profile/update/', views.update_user_profile, name='users-profile-update'),
     path('', views.get_users, name='users'),
-    path('delete/<str:pk>/', views.delete_users, name='users-delete'),
+    path('<str:pk>/', views.get_user_by_id, name='user'),
+    path('update/<str:pk>/', views.update_user, name='user-update'),
+    path('delete/<str:pk>/', views.delete_users, name='user-delete'),
 
 ]
