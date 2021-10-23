@@ -2,7 +2,7 @@ import {createStore, combineReducers, applyMiddleware} from "redux";
 import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
 // apply our store to devtool
-import {productListReducer, productDetailsReducer} from "./reducers/productReducers";
+import {productListReducer, productDetailsReducer, productDeleteReducer} from "./reducers/productReducers";
 import {cartReducer} from "./reducers/cartReducers";
 import {
     userLoginReducer,
@@ -10,7 +10,8 @@ import {
     userDetailsReducer,
     userUpdateProfileReducer,
     userListReducer,
-    userDeleteReducer
+    userDeleteReducer,
+    userUpdateReducer,
 } from "./reducers/userReducers";
 import {
     orderCreateReducer,
@@ -24,6 +25,8 @@ const reducer = combineReducers({
     productList: productListReducer,
     // Now there is a productList in our state that has products in it
     productDetails: productDetailsReducer,
+    productDelete: productDeleteReducer,
+
     cart: cartReducer,
 
     userLogin: userLoginReducer,
@@ -32,6 +35,7 @@ const reducer = combineReducers({
     userUpdateProfile: userUpdateProfileReducer,
     userList: userListReducer,
     userDelete: userDeleteReducer,
+    userUpdate: userUpdateReducer,
 
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,

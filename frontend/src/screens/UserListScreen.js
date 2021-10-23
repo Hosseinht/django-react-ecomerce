@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {LinkContainer} from "react-router-bootstrap";
 import {Table, Button,} from "react-bootstrap";
@@ -26,7 +26,7 @@ const UserListScreen = ({history}) => {
             history.push('/login')
         }
 
-    }, [dispatch, history, successDelete])
+    }, [dispatch, history, successDelete, userInfo])
 
     const deleteHandler = (id) => {
         if (window.confirm('Are you sure you want to delete this user?')) {
