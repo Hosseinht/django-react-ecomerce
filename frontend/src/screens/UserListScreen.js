@@ -4,7 +4,7 @@ import {LinkContainer} from "react-router-bootstrap";
 import {Table, Button,} from "react-bootstrap";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
-import {listUsers} from "../actions/userActions";
+import {listUsers, deleteUser} from "../actions/userActions";
 
 const UserListScreen = ({history}) => {
     const dispatch = useDispatch()
@@ -15,6 +15,8 @@ const UserListScreen = ({history}) => {
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
 
+    const userDelete = useSelector(state => state.userDelete)
+    const {success: successDelete} = userDelete
 
 
     useEffect(() => {
@@ -24,10 +26,12 @@ const UserListScreen = ({history}) => {
             history.push('/login')
         }
 
-    }, [dispatch, history])
+    }, [dispatch, history, successDelete])
 
     const deleteHandler = (id) => {
-        console.log('delete')
+        if (window.confirm('Are you sure you want to delete this user?')) {
+            dispatch(deleteUser(id))
+        }
     }
     return (
         <div>
@@ -54,7 +58,7 @@ const UserListScreen = ({history}) => {
                                     (<i className='fas fa-check' style={{color: 'red'}}> </i>)}
                                 </td>
                                 <td>
-                                    <LinkContainer to={`/admin/user/${user._id}`}>
+                                    <LinkContainer to={`/admin/user/${user._id}/edit`}>
                                         <Button variant='light btn-sm'><i className='fas fa-edit'> </i></Button>
                                     </LinkContainer>
                                     <Button variant='danger btn-sm' className='ms-2'

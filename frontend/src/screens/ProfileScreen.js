@@ -41,7 +41,7 @@ const ProfileScreen = ({history}) => {
             history.push('/login')
         } else {
             // if user is logged in  and information is not loaded
-            if (!user || !user.name || success) {
+            if (!user || !user.name || success || userInfo._id !== user._id) {
                 dispatch({type: USER_UPDATE_PROFILE_RESET})
                 dispatch(getUserDetails('profile'))
                 // Profile is the id in action

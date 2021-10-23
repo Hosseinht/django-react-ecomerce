@@ -9,7 +9,8 @@ import {
     userRegisterReducer,
     userDetailsReducer,
     userUpdateProfileReducer,
-    userListReducer
+    userListReducer,
+    userDeleteReducer
 } from "./reducers/userReducers";
 import {
     orderCreateReducer,
@@ -24,15 +25,19 @@ const reducer = combineReducers({
     // Now there is a productList in our state that has products in it
     productDetails: productDetailsReducer,
     cart: cartReducer,
+
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
     userUpdateProfile: userUpdateProfileReducer,
     userList: userListReducer,
+    userDelete: userDeleteReducer,
+
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,
     orderPay: orderPayReducer,
     orderListMy: orderListMyReducer,
+
 })
 
 // data is in the local storage but we want to load it into our state. it's stringified we need to parse it to turn it back to JavaScript object and load it to initialState
