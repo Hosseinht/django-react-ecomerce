@@ -31,7 +31,7 @@ def create_product(request):
         name='Sample name',
         price=0,
         brand='Ye brand',
-        count_In_Stock='Yekam darim',
+        count_In_Stock=1,
         category='Ye category',
         description=''
     )
