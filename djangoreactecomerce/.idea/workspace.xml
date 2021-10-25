@@ -19,7 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="656679e4-3cec-4658-bac4-e80a557112ff" name="Default Changelist" comment="" />
+    <list default="true" id="656679e4-3cec-4658-bac4-e80a557112ff" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/actions/productActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/actions/productActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/constants/productConstants.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/constants/productConstants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/reducers/productReducers.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/reducers/productReducers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/screens/ProductListScreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/screens/ProductListScreen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/store.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,8 +84,12 @@
       <option name="presentableId" value="Default" />
       <updated>1625116869741</updated>
       <workItem from="1625116870825" duration="5000" />
+      <workItem from="1635140632932" duration="9000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -90,5 +101,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
