@@ -11,6 +11,16 @@ import {
     PRODUCT_DELETE_REQUEST,
     PRODUCT_DELETE_SUCCESS,
     PRODUCT_DELETE_FAIL,
+
+    PRODUCT_CREATE_REQUEST,
+    PRODUCT_CREATE_SUCCESS,
+    PRODUCT_CREATE_FAIL,
+    PRODUCT_CREATE_RESET,
+
+    PRODUCT_UPDATE_REQUEST,
+    PRODUCT_UPDATE_SUCCESS,
+    PRODUCT_UPDATE_FAIL,
+    PRODUCT_UPDATE_RESET,
 } from "../constants/productConstants";
 import {ORDER_LIST_MY_FAIL, ORDER_LIST_MY_REQUEST, ORDER_LIST_MY_SUCCESS} from "../constants/orderConstants";
 
@@ -57,7 +67,7 @@ export const listProductDetails = (id) => async (dispatch) => {
 export const deleteProduct = (id) => async (dispatch, getState) => {
     try {
         dispatch({
-            type: PRODUCT_DELETE_SUCCESS
+            type: PRODUCT_DELETE_REQUEST
         })
 
         const {userLogin: {userInfo}} = getState()
@@ -86,3 +96,79 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
         })
     }
 }
+
+
+export const createProduct = () => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: PRODUCT_CREATE_REQUEST
+        })
+
+        const {userLogin: {userInfo}} = getState()
+        // Get the user details. we want to know who were logged in
+
+        const config = {
+            headers: {
+                'content-type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        const {data} = await axios.post(
+            `/api/products/create/`,
+            {},
+            config
+        )
+
+        dispatch({
+            type: PRODUCT_CREATE_SUCCESS,
+            payload: data
+        })
+
+
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_CREATE_FAIL,
+            payload: error.response && error.response.data.detail ? error.response.data.detail : error.message
+        })
+    }
+}
+
+export const updateProduct = (product) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: PRODUCT_UPDATE_REQUEST
+        })
+
+        const {userLogin: {userInfo}} = getState()
+        // Get the user details. we want to know who were logged in
+
+        const config = {
+            headers: {
+                'content-type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        const {data} = await axios.put(
+            `/api/products/update/${product._id}/`,
+            product,
+            config
+        )
+
+        dispatch({
+            type: PRODUCT_UPDATE_SUCCESS,
+            payload: data
+        })
+
+        dispatch({
+            type: PRODUCT_DETAILS_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: PRODUCT_UPDATE_FAIL,
+            payload: error.response && error.response.data.detail ? error.response.data.detail : error.message
+        })
+    }
+}
+
+
