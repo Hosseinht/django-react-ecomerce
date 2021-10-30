@@ -13,61 +13,40 @@ from base.serializers import ProductSerializer
 @api_view(['GET'])
 def get_products(request):
     query = request.query_params.get('keyword')
-    if query == None:
+    if query is None:
         query = ''
 
-    products = Product.objects.filter(
-        name__icontains=query).order_by('-created_At')
+    products = Product.objects.filter(name__icontains=query).order_by('-created_At')
 
+    # Paginator
     page = request.query_params.get('page')
-    paginator = Paginator(products, 5)
+    # Which page we are currently on
+    paginator = Paginator(products, 6)
+    # What to paginate? products. How many product per page? 2
 
     try:
         products = paginator.page(page)
+        # if passing a page from frontend. got ahead and get that
     except PageNotAnInteger:
         products = paginator.page(1)
+        # if we didn't send a page.just return the first page
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
+        # return the last page
 
-    if page == None:
+    if page is None:
         page = 1
-
     page = int(page)
-    print('Page:', page)
+
     serializer = ProductSerializer(products, many=True)
     return Response({'products': serializer.data, 'page': page, 'pages': paginator.num_pages})
 
 
-# @api_view(['GET'])
-# def get_products(request):
-#     query = request.query_params.get('keyword')
-#     if query is None:
-#         query = ''
-#
-#     products = Product.objects.filter(name__icontains=query)
-#
-#     # Paginator
-#     page = request.query_params.get('page')
-#     # Which page we are currently on
-#     paginator = Paginator(products, 2)
-#     # What to paginate? products. How many product per page? 2
-#
-#     try:
-#         products = paginator.page(page)
-#         # if passing a page from frontend. got ahead and get that
-#     except PageNotAnInteger:
-#         products = paginator.page(1)
-#         # if we didn't send a page.just return the first page
-#     except EmptyPage:
-#         products = paginator.page(paginator.num_pages)
-#         # return the last page
-#
-#     if page is None:
-#         page = 1
-#     page = int(page)
-#
-#     serializer = ProductSerializer(products, many=True)
-#     return Response({'products': serializer.data, 'page': page, 'pages': paginator.num_pages})
+@api_view(['GET'])
+def get_top_products(request):
+    products = Product.objects.filter(review__rating__gte=4).order_by('-rating')[0:5]
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
 
 
 @api_view(['GET'])
